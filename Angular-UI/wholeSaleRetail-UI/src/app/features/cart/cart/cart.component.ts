@@ -25,6 +25,8 @@ export class CartComponent {
 
   fetchQuote() {
     const items = this.getCart().map(i => ({ productId: i.product.id, quantity: i.quantity }));
+
+    // Call backend to calculate subtotal, discounts, and total
     this.checkoutService.getQuote(this.customerId, items).subscribe({
       next: (res) => this.quote = res,
       error: (err) => console.error(err)
@@ -33,6 +35,8 @@ export class CartComponent {
 
   placeOrder() {
     const items = this.getCart().map(i => ({ productId: i.product.id, quantity: i.quantity }));
+
+    // Send cart to backend to create order
     this.checkoutService.placeOrder(this.customerId, items).subscribe({
       next: (res: any) => {
         this.toastr.success(`Order has been place`, 'Cart Updated' , {

@@ -7,6 +7,9 @@ import { CartService } from '../../../shared/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 
 
+/**
+ * Component to display product catalog and allow adding products to cart.
+ */
 @Component({
   selector: 'app-product-list',
   imports: [CurrencyPipe, NgFor],
@@ -20,6 +23,9 @@ export class ProductListComponent implements OnInit  {
 
   constructor(private productService: ProductService, private cartService: CartService, private toastr: ToastrService ) {}
 
+  /**
+   * Fetch all products from backend on component initialization.
+   */
   ngOnInit(): void {
     this.productService.getProducts().subscribe(data => {
       this.products = data;
@@ -27,10 +33,19 @@ export class ProductListComponent implements OnInit  {
     });
   }
 
+   /**
+   * Filters products by category.
+   * @param category Category name or 'all'
+   */
   applyFilter(category: string) {
     this.filtered = category === 'all' ? this.products : this.products.filter(p => p.category === category);
   }
 
+  /**
+   * Adds product to cart and shows toastr notification.
+   * Determines price based on customer type.
+   * @param product Product to add
+   */
   addToCart(product: Product) {
     this.cartService.addToCart({ product, price: product.price });
 
