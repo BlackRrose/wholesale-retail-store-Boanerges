@@ -34,5 +34,8 @@ namespace WholesaleRetailAPI.Repositories
             await _context.SaveChangesAsync();
             return order;
         }
+
+        public async Task<Order?> GetByIdAsync(int id) =>
+            await _context.Orders.FindAsync(id);
     }
 }

@@ -48,10 +48,10 @@ namespace WholesaleRetailAPI.Services
                 if (product == null)
                     continue;
 
-                // 🔹 Base unit price
+                //Base unit price
                 decimal unitPrice = product.Price;
 
-                // 🔹 Apply wholesale logic
+                // Determine price based on customer type
                 if (customer.CustomerType == "Wholesale")
                 {
                     unitPrice *= 0.9m; // example: 10% off wholesale
