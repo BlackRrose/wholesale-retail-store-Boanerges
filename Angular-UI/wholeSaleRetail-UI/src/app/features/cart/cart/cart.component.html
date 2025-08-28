@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <h2>Your Cart</h2>
+  <table class="table table-striped mt-3" *ngIf="cartService.getCart().length > 0">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartService.getCart()">
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.product.price | currency:'R':'symbol':'1.2-2':'en-ZA' }}</td>
+        <td>{{ item.product.price * item.quantity | currency:'R':'symbol':'1.2-2':'en-ZA' }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="cartService.removeFromCart(item.product.name)">Remove</button>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <div *ngIf="getCart().length > 0" class="mt-3">
+    <button class="btn btn-secondary me-2" (click)="fetchQuote()">Get Pricing & Discounts</button>
+    <button class="btn btn-success" (click)="placeOrder()">Proceed to Checkout</button>
+  </div>
+
+  <div *ngIf="quote" class="mt-4">
+    <h4>Quote Summary</h4>
+    <p>Subtotal: {{ quote.subtotal | currency }}</p>
+    <ul>
+      <li *ngFor="let d of quote.discounts">
+        {{ d.rule }} - {{ d.amount | currency }}
+      </li>
+    </ul>
+    <h3>Total: {{ quote.total | currency }}</h3>
+  </div>
+
+  <div *ngIf="cartService.getCart().length === 0">
+    <p>Your cart is empty.</p>
+  </div>
+</div>

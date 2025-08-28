@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <h2>Product Catalog</h2>
+
+  <!-- Filter Buttons -->
+  <div class="mb-3">
+    <button class="btn btn-outline-primary me-2" (click)="applyFilter('all')">All</button>
+    <button class="btn btn-outline-secondary me-2" (click)="applyFilter('Fruit')">Fruit</button>
+    <button class="btn btn-outline-success me-2" (click)="applyFilter('Dairy')">Dairy</button>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="row">
+    <div *ngFor="let product of filtered" class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <p><strong>{{ product.price | currency:'R ':'symbol':'1.2-2':'en-ZA' }}</strong></p>
+          <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

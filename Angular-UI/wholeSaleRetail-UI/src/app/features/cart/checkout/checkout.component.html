@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h2>Checkout</h2>
+
+  <div *ngIf="cartItems.length === 0" class="alert alert-info">
+    Your cart is empty.
+  </div>
+
+  <div *ngIf="cartItems.length > 0">
+    <h4>Cart Items</h4>
+    <ul class="list-group mb-3">
+      <li *ngFor="let item of cartItems" class="list-group-item d-flex justify-content-between">
+        <span>{{ item.name }} (x{{ item.quantity }})</span>
+        <span>{{ item.price | currency }}</span>
+      </li>
+    </ul>
+
+    <button class="btn btn-secondary me-2" (click)="getQuote()">Get Quote</button>
+
+    <div *ngIf="quote" class="mt-4">
+      <h4>Quote</h4>
+      <p>Subtotal: {{ quote.subtotal | currency }}</p>
+      <ul>
+        <li *ngFor="let d of quote.discounts">
+          {{ d.rule }} - {{ d.amount | currency }}
+        </li>
+      </ul>
+      <h3>Total: {{ quote.total | currency }}</h3>
+
+      <button class="btn btn-success mt-3" (click)="placeOrder()">Place Order</button>
+    </div>
+  </div>
+</div>
