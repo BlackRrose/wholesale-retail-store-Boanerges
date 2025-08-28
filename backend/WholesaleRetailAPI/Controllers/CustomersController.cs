@@ -15,7 +15,6 @@ namespace WholesaleRetailAPI.Controllers
         [HttpPost("addCustomer")]
         public async Task<IActionResult> AddCustomer([FromBody] Customer customer)
         {
-            // Add try and catch
             if (string.IsNullOrWhiteSpace(customer.Email)) return BadRequest("Email required");
 
             var created = await _repository.AddAsync(customer);

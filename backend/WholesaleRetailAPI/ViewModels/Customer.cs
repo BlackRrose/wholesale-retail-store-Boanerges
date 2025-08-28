@@ -7,6 +7,6 @@
         public string Email { get; set; }
         public string CustomerType { get; set; } // Retail or Wholesale
 
-        public ICollection<Order> Orders { get; set; }
+        public ICollection<Order?> Orders { get; set; }
     }
 }
