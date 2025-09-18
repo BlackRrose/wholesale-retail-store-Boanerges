@@ -1,6 +1,6 @@
 # Wholesale-Retail-Store-<yourname>
 
-**FSN assessment — online store supporting both wholesale and retail customers**
+**online store supporting both wholesale and retail customers**
 
 ## Summary
 This repository contains the source and documentation for an online store that serves both retail and wholesale customers. The backend is intended to be built with C# (.NET) and MS SQL Server. The frontend will be implemented in Angular.
